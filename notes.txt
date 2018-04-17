@@ -1,3 +1,5 @@
+Started at 3pm April 17, 2018
+
 Your application should allow the user to: 
 
 Select if he/she would like to search by Representative or by Senator
@@ -19,7 +21,14 @@ If you have any questions, please let us know.
 
 Dropdown or radio buttons for rep/sen selection
 Dropdown for state selection
-Button 
+Button (disabled until both sections are filled out)
 
 Representatives or Senators - State
-Display name and party affiliation
+list of names and party affiliation
+When you click the li, populate the thing with more info (name, party, state, district, phone, office, link)
+
+Have a separate thing like them that gets populated
+
+First name is the first name
+last name is everything after the first name
+
