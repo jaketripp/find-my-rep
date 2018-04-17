@@ -1,0 +1,25 @@
+Your application should allow the user to: 
+
+Select if he/she would like to search by Representative or by Senator
+Select which state to return results for
+View a results list after #1 and #2 have been selected
+Display name and party affiliation
+View more information about the representative/senator by clicking on his/her name in the results list (district,  phone, office and a link to his/her website)
+
+Your website should be built using Angular and match the provided design. 
+
+Priorities: 
+
+Functionality
+Design
+Code organization
+Proper error handling (make sure they select something before clicking on the button to fetch results)
+
+If you have any questions, please let us know.  
+
+Dropdown or radio buttons for rep/sen selection
+Dropdown for state selection
+Button 
+
+Representatives or Senators - State
+Display name and party affiliation
