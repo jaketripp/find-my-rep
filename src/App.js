@@ -4,6 +4,7 @@ import axios from "axios";
 import "./styles/default.css";
 import "./styles/Form.css";
 import "./styles/PersonList.css";
+import "./styles/PersonListItem.css";
 import "./styles/MoreInfo.css";
 import "./styles/ErrorMessage.css";
 

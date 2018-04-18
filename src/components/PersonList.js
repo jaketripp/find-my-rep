@@ -1,10 +1,5 @@
 import React from "react";
-
-let partyAbbreviation = {
-  Republican: "R",
-  Democrat: "D",
-  Independent: "I"
-};
+import PersonListItem from "./PersonListItem";
 
 function PersonList(props) {
   return (
@@ -21,14 +16,12 @@ function PersonList(props) {
         {props.APIData.results.map((person, i) => {
           let selectedPersonName = props.selectedPersonInfo.name;
           return (
-            <li
+            <PersonListItem
               key={i}
-              onClick={() => props.showMoreInfo(person)}
-              className={selectedPersonName === person.name ? "selected" : ""}
-            >
-              <div>{person.name} </div>
-              <div className="party">{partyAbbreviation[person.party]}</div>
-            </li>
+              {...props}
+              person={person}
+              selectedPersonName={selectedPersonName}
+            />
           );
         })}
       </ul>

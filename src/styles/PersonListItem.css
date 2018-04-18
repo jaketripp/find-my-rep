@@ -1,0 +1,15 @@
+.list ul li {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.party {
+  min-width: 80px;
+}
+
+.selected {
+  font-weight: 900;
+}
