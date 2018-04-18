@@ -11,9 +11,16 @@ class App extends Component {
       state: "",
       APIData: "",
       formError: "",
+      infoClass: "placeholder info-field",
       selectedPersonInfo: {
-        name: "Jake Tripp",
-        link: "https://jaketripp.com"
+        state: "",
+        party: "",
+        firstName: "First Name",
+        lastName: "Last Name",
+        district: "District",
+        phone: "Phone",
+        office: "Office",
+        link: ""
       }
     };
   }
@@ -22,9 +29,7 @@ class App extends Component {
     e.preventDefault();
     if (this.state.state && this.state.position) {
       axios
-        .get(
-          `http://localhost:8080/${this.state.position}s/${this.state.state}`
-        )
+        .get(`http://localhost:8080/${this.state.position}/${this.state.state}`)
         .then(response => {
           this.setState({
             APIData: response.data,
@@ -54,14 +59,31 @@ class App extends Component {
     Independent: "I"
   };
 
-  showMoreInfo = (e) => {
-    console.log(e);
-  }
+  showMoreInfo = person => {
+    let { state, party, name, district, phone, office, link } = person;
+
+    this.setState({
+      infoClass: "info-field",
+      selectedPersonInfo: {
+        state,
+        party,
+        firstName: name.split(" ")[0],
+        lastName: name
+          .split(" ")
+          .slice(1)
+          .join(" "),
+        district: `District ${district}`,
+        phone,
+        office,
+        link
+      }
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        <h1>FIND MY REP</h1>
+        <h1 className="blue">Who's My Representative?</h1>
         <div className="form">
           <form onSubmit={this.submit}>
             <select
@@ -71,8 +93,8 @@ class App extends Component {
               onChange={this.onPositionChange}
             >
               <option value="">Select a Congress position</option>
-              <option value="representative">Representative</option>
-              <option value="senator">Senator</option>
+              <option value="Representatives">Representatives</option>
+              <option value="Senators">Senators</option>
             </select>
             <select
               name="state"
@@ -140,61 +162,78 @@ class App extends Component {
           )}
         </div>
         <div className="list">
-          {this.state.APIData.success && (
-            <h3>
-              {this.state.position === "representatives"
-                ? `Representatives - ${this.state.state}`
-                : `Senators - ${this.state.state}`}
-            </h3>
-          )}
-          {this.state.APIData.success && (
-            <ul>
-              <li>Name Party</li>
-              {this.state.APIData.results.map((person, i) => {
-                return (
-                  <li key={i} onClick={this.showMoreInfo}>
-                    {person.name} {this.partyAbbreviation[person.party]}
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+          {this.state.position &&
+            this.state.state &&
+            this.state.APIData.success && (
+              <h3>
+                List / <span className="blue">{this.state.position}</span>
+              </h3>
+            )}
+          {this.state.position &&
+            this.state.state &&
+            this.state.APIData.success && (
+              <ul>
+                <li>Name Party</li>
+                {this.state.APIData.results.map((person, i) => {
+                  return (
+                    <li key={i} onClick={() => this.showMoreInfo(person)}>
+                      {person.name} {this.partyAbbreviation[person.party]}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
         </div>
         <div className="moreInfo">
           <h3>Info</h3>
           <div className="fields">
-            <input
-              placeholder="First Name"
-              value={this.state.selectedPersonInfo.name.split(" ")[0]}
-              readOnly
-            />
-            <input
-              placeholder="Last Name"
-              value={this.state.selectedPersonInfo.name.split(" ")[0]}
-              readOnly
-            />
-            <input
-              placeholder="District"
-              value={this.state.selectedPersonInfo.name.split(" ")[0]}
-              readOnly
-            />
-            <input
-              placeholder="Phone"
-              value={this.state.selectedPersonInfo.name.split(" ")[0]}
-              readOnly
-            />
-            <input
-              placeholder="Office"
-              value={this.state.selectedPersonInfo.name.split(" ")[0]}
-              readOnly
-            />
-            <a
-              href={this.state.selectedPersonInfo.link}
-              target="_blank"
-              rel="noopener"
-            >
-              Website
-            </a>
+            <p className={this.state.infoClass}>
+              {this.state.selectedPersonInfo.firstName}
+            </p>
+            <p className={this.state.infoClass}>
+              {this.state.selectedPersonInfo.lastName}
+            </p>
+            {this.state.selectedPersonInfo.district && (
+              <p className={this.state.infoClass}>
+                {this.state.selectedPersonInfo.district}
+              </p>
+            )}
+            <p className={this.state.infoClass}>
+              <a
+                href={`tel:${this.state.selectedPersonInfo.phone}`}
+                className="blue"
+                target="_blank"
+                rel="noopener"
+              >
+                {this.state.selectedPersonInfo.phone}
+              </a>
+            </p>
+            <p className={this.state.infoClass}>
+              <a
+                href={`https://www.google.com/maps?q=${
+                  this.state.selectedPersonInfo.office
+                }`}
+                className="blue"
+                target="_blank"
+                rel="noopener"
+              >
+                {this.state.selectedPersonInfo.office}
+              </a>
+            </p>
+            <p className={this.state.infoClass}>
+              <a
+                href={this.state.selectedPersonInfo.link}
+                className="blue"
+                target="_blank"
+                rel="noopener"
+              >
+                {this.state.selectedPersonInfo.firstName !== "First Name" &&
+                  `${this.state.selectedPersonInfo.firstName} ${
+                    this.state.selectedPersonInfo.lastName
+                  }'s`}{" "}
+                Website
+              </a>
+            </p>
           </div>
         </div>
       </div>

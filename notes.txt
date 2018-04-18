@@ -19,6 +19,9 @@ Proper error handling (make sure they select something before clicking on the bu
 
 If you have any questions, please let us know.  
 
+
+FIND MY REP
+
 Dropdown or radio buttons for rep/sen selection
 Dropdown for state selection
 Button (disabled until both sections are filled out)
@@ -32,3 +35,4 @@ Have a separate thing like them that gets populated
 First name is the first name
 last name is everything after the first name
 
+just run showmoreInfo with person passed in
