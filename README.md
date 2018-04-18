@@ -4,6 +4,10 @@ Who's My Representative?
 
 ---
 
+![](https://github.com/jaketripp/find-my-rep/blob/master/findmyrep.png)
+
+---
+
 ## Installation
 
  * ```npm i``` to install the necessary packages
