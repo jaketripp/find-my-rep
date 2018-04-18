@@ -129,6 +129,7 @@ class App extends Component {
               id="position"
               value={this.state.position}
               onChange={this.onPositionChange}
+              aria-label="Congress position"
             >
               <option value="">Select a Congress position</option>
               <option value="Representatives">Representatives</option>
@@ -139,6 +140,7 @@ class App extends Component {
               id="state"
               value={this.state.state}
               onChange={this.onStateChange}
+              aria-label="US State"
             >
               <option value="">Select a State</option>
               <option value="AL">Alabama</option>
@@ -221,7 +223,13 @@ class App extends Component {
                   {this.state.APIData.results.map((person, i) => {
                     let selectedPersonName = this.state.selectedPersonInfo.name;
                     return (
-                      <li key={i} onClick={() => this.showMoreInfo(person)} className={selectedPersonName  === person.name ? "selected" : ""}>
+                      <li
+                        key={i}
+                        onClick={() => this.showMoreInfo(person)}
+                        className={
+                          selectedPersonName === person.name ? "selected" : ""
+                        }
+                      >
                         <div>{person.name} </div>
                         <div className="party">
                           {this.partyAbbreviation[person.party]}
