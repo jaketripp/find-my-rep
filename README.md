@@ -9,7 +9,7 @@ Who's My Representative?
  * ```npm i``` to install the necessary packages
  * ```npm run build``` to create an optimized production build 
  * ```cd build``` then ```http-server``` to start up the server on ```http://localhost:8080/``` 
- * open a new terminal, ```cd find-rep-api```, then ```npm start``` to start the representative server
+ * open a new terminal, ```cd find-rep-api```, then ```npm i``` to install necessary packages, then ```npm start``` to start the representative server
 
 ---
 
