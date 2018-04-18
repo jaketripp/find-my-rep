@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
+const Location = require('react-icons/lib/fa/location-arrow');
+const ExternalLink = require('react-icons/lib/fa/external-link');
+const Phone = require('react-icons/lib/fa/phone');
 
 class App extends Component {
   constructor(props) {
@@ -213,7 +216,7 @@ class App extends Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    {this.state.selectedPersonInfo.phone}
+                    <Phone /> {this.state.selectedPersonInfo.phone}
                   </a>
                 </p>
                 <p className={this.state.infoClass}>
@@ -225,7 +228,7 @@ class App extends Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    {this.state.selectedPersonInfo.office}
+                    <Location /> {this.state.selectedPersonInfo.office}
                   </a>
                 </p>
                 <p className={this.state.infoClass}>
@@ -235,7 +238,7 @@ class App extends Component {
                     target="_blank"
                     rel="noopener"
                   >
-                    {this.state.selectedPersonInfo.firstName !== "First Name" &&
+                    <ExternalLink /> {this.state.selectedPersonInfo.firstName !== "First Name" &&
                       `${this.state.selectedPersonInfo.firstName} ${
                         this.state.selectedPersonInfo.lastName
                       }'s`}{" "}

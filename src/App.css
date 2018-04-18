@@ -37,11 +37,6 @@ form > * {
   border: none;
 }
 
-a[href^="tel:"]:before {
-  content: "\260e";
-  margin-right: 0.5em;
-}
-
 .error {
   color: #ff5f59;
   padding: 0 24px;
