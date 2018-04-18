@@ -103,6 +103,12 @@ class App extends Component {
     });
   };
 
+  shouldShowList = () => {
+    return (
+      this.state.position && this.state.state && this.state.APIData.success
+    );
+  };
+
   render() {
     return (
       <div className="App">
@@ -119,11 +125,9 @@ class App extends Component {
           )}
         </div>
         <div className="row">
-          {this.state.position &&
-            this.state.state &&
-            this.state.APIData.success && (
-              <PersonList {...this.state} showMoreInfo={this.showMoreInfo} />
-            )}
+          {this.shouldShowList() && (
+            <PersonList {...this.state} showMoreInfo={this.showMoreInfo} />
+          )}
           {this.state.APIData.success && <MoreInfo {...this.state} />}
         </div>
       </div>
