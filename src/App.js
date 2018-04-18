@@ -41,7 +41,7 @@ class App extends Component {
         });
     } else {
       this.setState({
-        formError: "Please choose a Congress position AND US State"
+        formError: "Please select a Congress position and US State"
       });
     }
   };
@@ -155,85 +155,94 @@ class App extends Component {
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <button type="submit" className="submitBtn">Submit</button>
+            <button type="submit" className="submitBtn">
+              Submit
+            </button>
           </form>
           {this.state.formError && (
-            <p className="error">{this.state.formError}</p>
+            <p className="error">
+              <em>{this.state.formError}</em>
+            </p>
           )}
         </div>
-        <div className="list">
-          {this.state.position &&
-            this.state.state &&
-            this.state.APIData.success && (
-              <h3>
-                List / <span className="blue">{this.state.position}</span>
-              </h3>
-            )}
-          {this.state.position &&
-            this.state.state &&
-            this.state.APIData.success && (
-              <ul>
-                <li>Name Party</li>
-                {this.state.APIData.results.map((person, i) => {
-                  return (
-                    <li key={i} onClick={() => this.showMoreInfo(person)}>
-                      {person.name} {this.partyAbbreviation[person.party]}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-        </div>
-        <div className="moreInfo">
-          <h3>Info</h3>
-          <div className="fields">
-            <p className={this.state.infoClass}>
-              {this.state.selectedPersonInfo.firstName}
-            </p>
-            <p className={this.state.infoClass}>
-              {this.state.selectedPersonInfo.lastName}
-            </p>
-            {this.state.selectedPersonInfo.district !== "District " && (
+        <div className="row">
+          <div className="list">
+            {this.state.position &&
+              this.state.state &&
+              this.state.APIData.success && (
+                <h3>
+                  List / <span className="blue">{this.state.position}</span>
+                </h3>
+              )}
+            {this.state.position &&
+              this.state.state &&
+              this.state.APIData.success && (
+                <ul>
+                  <li>
+                    <div>Name</div> <div>Party</div>
+                  </li>
+                  {this.state.APIData.results.map((person, i) => {
+                    return (
+                      <li key={i} onClick={() => this.showMoreInfo(person)}>
+                        <div>{person.name} </div>
+                        <div>{this.partyAbbreviation[person.party]}</div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+          </div>
+          <div className="moreInfo">
+            <h3>Info</h3>
+            <div className="fields">
               <p className={this.state.infoClass}>
-                {this.state.selectedPersonInfo.district}
+                {this.state.selectedPersonInfo.firstName}
               </p>
-            )}
-            <p className={this.state.infoClass}>
-              <a
-                href={`tel:${this.state.selectedPersonInfo.phone}`}
-                className="blue"
-                target="_blank"
-                rel="noopener"
-              >
-                {this.state.selectedPersonInfo.phone}
-              </a>
-            </p>
-            <p className={this.state.infoClass}>
-              <a
-                href={`https://www.google.com/maps?q=${
-                  this.state.selectedPersonInfo.office
-                }`}
-                className="blue"
-                target="_blank"
-                rel="noopener"
-              >
-                {this.state.selectedPersonInfo.office}
-              </a>
-            </p>
-            <p className={this.state.infoClass}>
-              <a
-                href={this.state.selectedPersonInfo.link}
-                className="blue"
-                target="_blank"
-                rel="noopener"
-              >
-                {this.state.selectedPersonInfo.firstName !== "First Name" &&
-                  `${this.state.selectedPersonInfo.firstName} ${
-                    this.state.selectedPersonInfo.lastName
-                  }'s`}{" "}
-                Website
-              </a>
-            </p>
+              <p className={this.state.infoClass}>
+                {this.state.selectedPersonInfo.lastName}
+              </p>
+              {this.state.selectedPersonInfo.district !== "District " && (
+                <p className={this.state.infoClass}>
+                  {this.state.selectedPersonInfo.district}
+                </p>
+              )}
+              <p className={this.state.infoClass}>
+                <a
+                  href={`tel:${this.state.selectedPersonInfo.phone}`}
+                  className="blue"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {this.state.selectedPersonInfo.phone}
+                </a>
+              </p>
+              <p className={this.state.infoClass}>
+                <a
+                  href={`https://www.google.com/maps?q=${
+                    this.state.selectedPersonInfo.office
+                  }`}
+                  className="blue"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {this.state.selectedPersonInfo.office}
+                </a>
+              </p>
+              <p className={this.state.infoClass}>
+                <a
+                  href={this.state.selectedPersonInfo.link}
+                  className="blue"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {this.state.selectedPersonInfo.firstName !== "First Name" &&
+                    `${this.state.selectedPersonInfo.firstName} ${
+                      this.state.selectedPersonInfo.lastName
+                    }'s`}{" "}
+                  Website
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
