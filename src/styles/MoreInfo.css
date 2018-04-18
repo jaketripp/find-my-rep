@@ -1,0 +1,23 @@
+.moreInfo {
+  flex: 1 0 256px;
+  padding: 0 24px;
+}
+
+.info-field {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.placeholder {
+  color: #bbb;
+}
+
+.placeholder .blue {
+  color: #bbb;
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+}

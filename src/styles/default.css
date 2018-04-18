@@ -1,0 +1,31 @@
+/* #3996ff background */
+/* #00a4f1 words */
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.App {
+  color: #444;
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+h1 {
+  padding: 0 24px;
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+.blue {
+  color: #00a4f1;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+}

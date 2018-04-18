@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import "./App.css";
+import './styles/default.css';
+import './styles/Form.css';
+import './styles/PersonList.css';
+import './styles/MoreInfo.css';
+import './styles/ErrorMessage.css';
+
 import MoreInfo from "./components/MoreInfo";
 import PersonList from "./components/PersonList";
+import ErrorMessage from "./components/ErrorMessage";
 
 class App extends Component {
   constructor(props) {
@@ -181,12 +187,16 @@ class App extends Component {
               Submit
             </button>
           </form>
-          {this.state.formError && }
+          {this.state.formError && (
+            <ErrorMessage formError={this.state.formError} />
+          )}
         </div>
         <div className="row">
           {this.state.position &&
             this.state.state &&
-            this.state.APIData.success && <PersonList {...this.state} showMoreInfo={this.showMoreInfo}/>}
+            this.state.APIData.success && (
+              <PersonList {...this.state} showMoreInfo={this.showMoreInfo} />
+            )}
           {this.state.APIData.success && <MoreInfo {...this.state} />}
         </div>
       </div>
