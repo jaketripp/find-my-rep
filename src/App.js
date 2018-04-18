@@ -179,71 +179,73 @@ class App extends Component {
               this.state.APIData.success && (
                 <ul>
                   <li>
-                    <div>Name</div> <div>Party</div>
+                    <div>Name</div> <div className="party">Party</div>
                   </li>
                   {this.state.APIData.results.map((person, i) => {
                     return (
                       <li key={i} onClick={() => this.showMoreInfo(person)}>
                         <div>{person.name} </div>
-                        <div>{this.partyAbbreviation[person.party]}</div>
+                        <div className="party">{this.partyAbbreviation[person.party]}</div>
                       </li>
                     );
                   })}
                 </ul>
               )}
           </div>
-          <div className="moreInfo">
-            <h3>Info</h3>
-            <div className="fields">
-              <p className={this.state.infoClass}>
-                {this.state.selectedPersonInfo.firstName}
-              </p>
-              <p className={this.state.infoClass}>
-                {this.state.selectedPersonInfo.lastName}
-              </p>
-              {this.state.selectedPersonInfo.district !== "District " && (
+          {this.state.selectedPersonInfo.firstName !== "First Name" && (
+            <div className="moreInfo">
+              <h3>Info</h3>
+              <div className="fields">
                 <p className={this.state.infoClass}>
-                  {this.state.selectedPersonInfo.district}
+                  {this.state.selectedPersonInfo.firstName}
                 </p>
-              )}
-              <p className={this.state.infoClass}>
-                <a
-                  href={`tel:${this.state.selectedPersonInfo.phone}`}
-                  className="blue"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {this.state.selectedPersonInfo.phone}
-                </a>
-              </p>
-              <p className={this.state.infoClass}>
-                <a
-                  href={`https://www.google.com/maps?q=${
-                    this.state.selectedPersonInfo.office
-                  }`}
-                  className="blue"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {this.state.selectedPersonInfo.office}
-                </a>
-              </p>
-              <p className={this.state.infoClass}>
-                <a
-                  href={this.state.selectedPersonInfo.link}
-                  className="blue"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {this.state.selectedPersonInfo.firstName !== "First Name" &&
-                    `${this.state.selectedPersonInfo.firstName} ${
-                      this.state.selectedPersonInfo.lastName
-                    }'s`}{" "}
-                  Website
-                </a>
-              </p>
+                <p className={this.state.infoClass}>
+                  {this.state.selectedPersonInfo.lastName}
+                </p>
+                {this.state.selectedPersonInfo.district !== "District " && (
+                  <p className={this.state.infoClass}>
+                    {this.state.selectedPersonInfo.district}
+                  </p>
+                )}
+                <p className={this.state.infoClass}>
+                  <a
+                    href={`tel:${this.state.selectedPersonInfo.phone}`}
+                    className="blue"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {this.state.selectedPersonInfo.phone}
+                  </a>
+                </p>
+                <p className={this.state.infoClass}>
+                  <a
+                    href={`https://www.google.com/maps?q=${
+                      this.state.selectedPersonInfo.office
+                    }`}
+                    className="blue"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {this.state.selectedPersonInfo.office}
+                  </a>
+                </p>
+                <p className={this.state.infoClass}>
+                  <a
+                    href={this.state.selectedPersonInfo.link}
+                    className="blue"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {this.state.selectedPersonInfo.firstName !== "First Name" &&
+                      `${this.state.selectedPersonInfo.firstName} ${
+                        this.state.selectedPersonInfo.lastName
+                      }'s`}{" "}
+                    Website
+                  </a>
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     );
