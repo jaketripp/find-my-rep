@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-const Location = require('react-icons/lib/fa/location-arrow');
-const ExternalLink = require('react-icons/lib/fa/external-link');
-const Phone = require('react-icons/lib/fa/phone');
+const Location = require("react-icons/lib/fa/location-arrow");
+const ExternalLink = require("react-icons/lib/fa/external-link");
+const Phone = require("react-icons/lib/fa/phone");
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class App extends Component {
       selectedPersonInfo: {
         state: "",
         party: "",
+        name: "",
         firstName: "First Name",
         lastName: "Last Name",
         district: "District",
@@ -41,6 +42,9 @@ class App extends Component {
         })
         .catch(error => {
           console.log(error);
+          this.setState({
+            formError: "Something went wrong, please try again later."
+          });
         });
     } else {
       this.setState({
@@ -50,10 +54,40 @@ class App extends Component {
   };
 
   onPositionChange = e => {
-    this.setState({ position: e.target.value });
+    this.setState({
+      position: e.target.value,
+      APIData: "",
+      selectedPersonInfo: {
+        state: "",
+        party: "",
+        name: "",
+        firstName: "First Name",
+        lastName: "Last Name",
+        district: "District",
+        phone: "Phone",
+        office: "Office",
+        link: ""
+      },
+      infoClass: "placeholder info-field"
+    });
   };
   onStateChange = e => {
-    this.setState({ state: e.target.value });
+    this.setState({
+      state: e.target.value,
+      APIData: "",
+      selectedPersonInfo: {
+        state: "",
+        party: "",
+        name: "",
+        firstName: "First Name",
+        lastName: "Last Name",
+        district: "District",
+        phone: "Phone",
+        office: "Office",
+        link: ""
+      },
+      infoClass: "placeholder info-field"
+    });
   };
 
   partyAbbreviation = {
@@ -70,6 +104,7 @@ class App extends Component {
       selectedPersonInfo: {
         state,
         party,
+        name,
         firstName: name.split(" ")[0],
         lastName: name
           .split(" ")
@@ -184,10 +219,13 @@ class App extends Component {
                     <div>Name</div> <div className="party">Party</div>
                   </li>
                   {this.state.APIData.results.map((person, i) => {
+                    let selectedPersonName = this.state.selectedPersonInfo.name;
                     return (
-                      <li key={i} onClick={() => this.showMoreInfo(person)}>
+                      <li key={i} onClick={() => this.showMoreInfo(person)} className={selectedPersonName  === person.name ? "selected" : ""}>
                         <div>{person.name} </div>
-                        <div className="party">{this.partyAbbreviation[person.party]}</div>
+                        <div className="party">
+                          {this.partyAbbreviation[person.party]}
+                        </div>
                       </li>
                     );
                   })}
@@ -204,41 +242,55 @@ class App extends Component {
                 <p className={this.state.infoClass}>
                   {this.state.selectedPersonInfo.lastName}
                 </p>
-                {this.state.selectedPersonInfo.district !== "District " && (
-                  <p className={this.state.infoClass}>
-                    {this.state.selectedPersonInfo.district}
-                  </p>
-                )}
+                {this.state.selectedPersonInfo.district !== "District " &&
+                  this.state.position === "Representatives" && (
+                    <p className={this.state.infoClass}>
+                      {this.state.selectedPersonInfo.district}
+                    </p>
+                  )}
                 <p className={this.state.infoClass}>
                   <a
-                    href={`tel:${this.state.selectedPersonInfo.phone}`}
-                    className="blue"
+                    href={
+                      this.state.selectedPersonInfo.phone !== "Phone"
+                        ? `tel:${this.state.selectedPersonInfo.phone}`
+                        : "#"
+                    }
                     target="_blank"
                     rel="noopener"
+                    className="blue"
                   >
                     <Phone /> {this.state.selectedPersonInfo.phone}
                   </a>
                 </p>
                 <p className={this.state.infoClass}>
                   <a
-                    href={`https://www.google.com/maps?q=${
-                      this.state.selectedPersonInfo.office
-                    }`}
-                    className="blue"
+                    href={
+                      this.state.selectedPersonInfo.office !== "Office"
+                        ? `https://www.google.com/maps?q=${
+                            this.state.selectedPersonInfo.office
+                          }`
+                        : "#"
+                    }
                     target="_blank"
                     rel="noopener"
+                    className="blue"
                   >
                     <Location /> {this.state.selectedPersonInfo.office}
                   </a>
                 </p>
                 <p className={this.state.infoClass}>
                   <a
-                    href={this.state.selectedPersonInfo.link}
-                    className="blue"
+                    href={
+                      this.state.selectedPersonInfo.link
+                        ? this.state.selectedPersonInfo.link
+                        : "#"
+                    }
                     target="_blank"
                     rel="noopener"
+                    className="blue"
                   >
-                    <ExternalLink /> {this.state.selectedPersonInfo.firstName !== "First Name" &&
+                    <ExternalLink />{" "}
+                    {this.state.selectedPersonInfo.firstName !== "First Name" &&
                       `${this.state.selectedPersonInfo.firstName} ${
                         this.state.selectedPersonInfo.lastName
                       }'s`}{" "}
