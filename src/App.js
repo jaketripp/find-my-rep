@@ -36,7 +36,7 @@ class App extends Component {
     };
   }
 
-  submit = e => {
+  submitForm = e => {
     e.preventDefault();
     if (this.state.state && this.state.position) {
       axios
@@ -108,7 +108,7 @@ class App extends Component {
         <h1 className="blue">Who's My Representative?</h1>
         <div className="form">
           <Form
-            submit={this.submit}
+            submit={this.submitForm}
             onSelectChange={this.onSelectChange}
             position={this.state.position}
             state={this.state.state}
