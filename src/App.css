@@ -1,13 +1,31 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   color: #444;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  padding: 0 24px;
+}
+
+form {
+  padding: 0 24px;
+  display: flex;
+}
+
+form > * {
+  margin-right: 8px;
 }
 
 .submitBtn {
   background: #3996ff;
-  font-weight: 900;
+  font-weight: bold;
   padding: 8px 16px;
   color: white;
+  letter-spacing: 2px;
+  border: none;
 }
 
 a[href^="tel:"]:before {
@@ -23,6 +41,35 @@ a[href^="tel:"]:before {
   color: #00a4f1;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list,
+.moreInfo {
+  flex: 1 0 256px;
+  max-width: 584px;
+  padding: 24px;
+}
+
+.list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list ul li {
+  padding: 12px;
+  border-bottom: 1px solid #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list ul li:first-of-type {
+  background-color: #f4f4f4;
+}
+
 .info-field {
   background-color: #f4f4f4;
   border-radius: 5px;
@@ -31,13 +78,14 @@ a[href^="tel:"]:before {
 }
 
 .placeholder {
-  color: #bbb; 
+  color: #bbb;
 }
 
 .placeholder .blue {
   color: #bbb;
-  cursor: not-allowed;  
+  cursor: not-allowed;
   pointer-events: none;
+  text-decoration: none;
 }
 
 /* #3996ff background */
