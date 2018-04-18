@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import "./App.css";
-import MoreInfo from './components/MoreInfo';
+import MoreInfo from "./components/MoreInfo";
+import PersonList from "./components/PersonList";
 
 class App extends Component {
   constructor(props) {
@@ -180,48 +181,12 @@ class App extends Component {
               Submit
             </button>
           </form>
-          {this.state.formError && (
-            <p className="error">
-              <em>{this.state.formError}</em>
-            </p>
-          )}
+          {this.state.formError && }
         </div>
         <div className="row">
-          <div className="list">
-            {this.state.position &&
-              this.state.state &&
-              this.state.APIData.success && (
-                <h3>
-                  List / <span className="blue">{this.state.position}</span>
-                </h3>
-              )}
-            {this.state.position &&
-              this.state.state &&
-              this.state.APIData.success && (
-                <ul>
-                  <li>
-                    <div>Name</div> <div className="party">Party</div>
-                  </li>
-                  {this.state.APIData.results.map((person, i) => {
-                    let selectedPersonName = this.state.selectedPersonInfo.name;
-                    return (
-                      <li
-                        key={i}
-                        onClick={() => this.showMoreInfo(person)}
-                        className={
-                          selectedPersonName === person.name ? "selected" : ""
-                        }
-                      >
-                        <div>{person.name} </div>
-                        <div className="party">
-                          {this.partyAbbreviation[person.party]}
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-          </div>
+          {this.state.position &&
+            this.state.state &&
+            this.state.APIData.success && <PersonList {...this.state} showMoreInfo={this.showMoreInfo}/>}
           {this.state.APIData.success && <MoreInfo {...this.state} />}
         </div>
       </div>
