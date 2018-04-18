@@ -155,7 +155,7 @@ class App extends Component {
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <button type="submit">Submit</button>
+            <button type="submit" className="submitBtn">Submit</button>
           </form>
           {this.state.formError && (
             <p className="error">{this.state.formError}</p>
@@ -193,7 +193,7 @@ class App extends Component {
             <p className={this.state.infoClass}>
               {this.state.selectedPersonInfo.lastName}
             </p>
-            {this.state.selectedPersonInfo.district && (
+            {this.state.selectedPersonInfo.district !== "District " && (
               <p className={this.state.infoClass}>
                 {this.state.selectedPersonInfo.district}
               </p>
