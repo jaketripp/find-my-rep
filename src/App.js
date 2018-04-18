@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
 import axios from "axios";
-const Location = require("react-icons/lib/fa/location-arrow");
-const ExternalLink = require("react-icons/lib/fa/external-link");
-const Phone = require("react-icons/lib/fa/phone");
+
+import "./App.css";
+import MoreInfo from './components/MoreInfo';
 
 class App extends Component {
   constructor(props) {
@@ -223,74 +222,7 @@ class App extends Component {
                 </ul>
               )}
           </div>
-          {this.state.APIData.success && (
-            <div className="moreInfo">
-              <h3>Info</h3>
-              <div className="fields">
-                <p className={this.state.infoClass}>
-                  {this.state.selectedPersonInfo.firstName}
-                </p>
-                <p className={this.state.infoClass}>
-                  {this.state.selectedPersonInfo.lastName}
-                </p>
-                {this.state.selectedPersonInfo.district !== "District " &&
-                  this.state.position === "Representatives" && (
-                    <p className={this.state.infoClass}>
-                      {this.state.selectedPersonInfo.district}
-                    </p>
-                  )}
-                <p className={this.state.infoClass}>
-                  <a
-                    href={
-                      this.state.selectedPersonInfo.phone !== "Phone"
-                        ? `tel:${this.state.selectedPersonInfo.phone}`
-                        : "#"
-                    }
-                    target="_blank"
-                    rel="noopener"
-                    className="blue"
-                  >
-                    <Phone /> {this.state.selectedPersonInfo.phone}
-                  </a>
-                </p>
-                <p className={this.state.infoClass}>
-                  <a
-                    href={
-                      this.state.selectedPersonInfo.office !== "Office"
-                        ? `https://www.google.com/maps?q=${
-                            this.state.selectedPersonInfo.office
-                          }`
-                        : "#"
-                    }
-                    target="_blank"
-                    rel="noopener"
-                    className="blue"
-                  >
-                    <Location /> {this.state.selectedPersonInfo.office}
-                  </a>
-                </p>
-                <p className={this.state.infoClass}>
-                  <a
-                    href={
-                      this.state.selectedPersonInfo.link
-                        ? this.state.selectedPersonInfo.link
-                        : "#"
-                    }
-                    target="_blank"
-                    rel="noopener"
-                    className="blue"
-                  >
-                    <ExternalLink />{" "}
-                    {this.state.selectedPersonInfo.firstName !== "First Name" &&
-                      `${this.state.selectedPersonInfo.firstName} ${
-                        this.state.selectedPersonInfo.lastName
-                      }'s`}{" "}
-                    Website
-                  </a>
-                </p>
-              </div>
-            </div>
-          )}
+          {this.state.APIData.success && <MoreInfo {...this.state} />}
         </div>
       </div>
     );
