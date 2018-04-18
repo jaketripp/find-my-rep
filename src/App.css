@@ -82,7 +82,7 @@ a[href^="tel:"]:before {
 }
 
 .party {
-  min-width: 64px;
+  min-width: 80px;
 }
 
 .info-field {
