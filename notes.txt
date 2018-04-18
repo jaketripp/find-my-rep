@@ -35,4 +35,6 @@ Have a separate thing like them that gets populated
 First name is the first name
 last name is everything after the first name
 
-just run showmoreInfo with person passed in
+fa-location-arrow
+fa-external-link
+fa-phone
