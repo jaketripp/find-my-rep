@@ -53,9 +53,8 @@ class App extends Component {
     }
   };
 
-  onPositionChange = e => {
-    this.setState({
-      position: e.target.value,
+  onSelectChange = (e, property) => {
+    let newState = {
       APIData: "",
       selectedPersonInfo: {
         state: "",
@@ -69,25 +68,9 @@ class App extends Component {
         link: ""
       },
       infoClass: "placeholder info-field"
-    });
-  };
-  onStateChange = e => {
-    this.setState({
-      state: e.target.value,
-      APIData: "",
-      selectedPersonInfo: {
-        state: "",
-        party: "",
-        name: "",
-        firstName: "First Name",
-        lastName: "Last Name",
-        district: "District",
-        phone: "Phone",
-        office: "Office",
-        link: ""
-      },
-      infoClass: "placeholder info-field"
-    });
+    };
+    newState[property] = e.target.value;
+    this.setState(newState);
   };
 
   partyAbbreviation = {
@@ -128,7 +111,7 @@ class App extends Component {
               name="position"
               id="position"
               value={this.state.position}
-              onChange={this.onPositionChange}
+              onChange={e => this.onSelectChange(e, "position")}
               aria-label="Congress position"
             >
               <option value="">Select a Congress position</option>
@@ -139,7 +122,7 @@ class App extends Component {
               name="state"
               id="state"
               value={this.state.state}
-              onChange={this.onStateChange}
+              onChange={e => this.onSelectChange(e, "state")}
               aria-label="US State"
             >
               <option value="">Select a State</option>
