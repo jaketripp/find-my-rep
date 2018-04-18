@@ -47,6 +47,10 @@ form > * {
   color: #00a4f1;
 }
 
+.selected {
+  font-weight: 900;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap-reverse;
